@@ -1,6 +1,6 @@
 import sqlite3
 
-DB_PATH = "gestionnaire_de_tache.db"
+DB_PATH = "data/gestionnaire_de_tache.db"
 
 with sqlite3.connect(DB_PATH) as db:
     db.execute("PRAGMA foreign_keys = ON")
