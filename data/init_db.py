@@ -4,12 +4,13 @@ DB_PATH = "data/gestionnaire_de_tache.db"
 
 with sqlite3.connect(DB_PATH) as db:
     db.execute("PRAGMA foreign_keys = ON")
-    
+
     db.execute("""
         CREATE TABLE IF NOT EXISTS utilisateurs(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             prenom TEXT NOT NULL,
-            nom TEXT NOT NULL
+            nom TEXT NOT NULL,
+            UNIQUE(prenom, nom)
         )
     """)
 
@@ -20,6 +21,7 @@ with sqlite3.connect(DB_PATH) as db:
             id_utilisateur INTEGER,
             tache_a_realiser TEXT NOT NULL,
             statut TEXT NOT NULL,
-            FOREIGN KEY (id_utilisateur) REFERENCES utilisateurs(id)
+            created_at TEXT NOT NULL DEFAULT current_timestamp,
+            FOREIGN KEY (id_utilisateur) REFERENCES utilisateurs(id) ON DELETE CASCADE
         )
     """)
