@@ -138,7 +138,7 @@ class GestionnaireDeTaches:
             raise Exception(f"Erreur innatendu de type : {e}")
 
     """permet de modifier une tache existante via son id la méthode agit sur la base sqlite DB_PATH et la table taches"""
-    def modifier_tache(self, id_tache : int, tache : str):
+    def modifier_tache(self, id_tache : int, tache : str) -> str:
         try:
             if self.verification_id_tache(id_tache):
                 with sqlite3.connect(DB_PATH) as db:
